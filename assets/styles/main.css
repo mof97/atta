@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.n-form-item .n-form-item-feedback-wrapper {
+    min-height: 0px;
+}
+
+.overlay {
+    background: rgb(0,0,0);
+    background: linear-gradient(220deg, rgba(0,0,0,0) 21%, rgba(0,0,0,1) 100%);
+    @apply absolute top-0 left-0 w-full h-full z-10;
+}
