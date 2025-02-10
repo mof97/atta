@@ -1,7 +1,7 @@
 import axios from "axios";
 export const useFlights = defineStore('Flights', () => {
     const fares = ref([])
-    const flightInfo = ref(JSON.parse(sessionStorage.getItem('MTN-flight-info')) || 'test')
+    const flightInfo = ref(JSON.parse(sessionStorage.getItem('ATA-flight-info')) || null)
 
     async function getFares(payload){
         const {data} = await axios.post(`/flight/get-brand-fares`,payload)
@@ -11,7 +11,7 @@ export const useFlights = defineStore('Flights', () => {
     async function flightPrice(payload){
         const {data} = await axios.post(`/flight/get-price`,payload)
         flightInfo.value = data.data
-        sessionStorage.setItem('MTN-flight-info', JSON.stringify(data.data))
+        sessionStorage.setItem('ATA-flight-info', JSON.stringify(data.data))
         return data
     }
 

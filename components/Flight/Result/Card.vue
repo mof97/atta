@@ -14,10 +14,13 @@
 <!--      </div>-->
       <div>
         <span class="text-nive-light">Price</span>
-        <div class="flex items-center gap-1">
-          <span class="text-xl py-3 font-bold">
+        <div class="flex items-center gap-1 mb-2">
+          <span class="text-xl font-bold">
             {{flight?.price?.total?.toLocaleString()}} {{ flight?.price?.currency }}
           </span>
+          <p class="text-sm text-center" v-if="flight.private_fare === true">
+            Include Privet Fare
+          </p>
           <n-tooltip trigger="hover">
             <template #trigger>
                   <Icon class="text-2xl cursor-pointer" name="akar-icons:info" />
@@ -40,6 +43,9 @@
         <n-button type="primary" block @click="handelSelectPrice">
           Select
         </n-button>
+        <span class="text-gray-light">
+          {{flight.supply_provider}}
+        </span>
       </div>
 <!--      <ul class="flex items-center gap-1 text-third" v-if="flight?.baggage_allowance">-->
 <!--        <li @click="selectBaggage" class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded duration-500 cursor-pointer hover:bg-primary hover:text-white">-->
@@ -76,6 +82,7 @@ const props = defineProps({
 
 
   const handelSelectPrice = ()=>{
+    sessionStorage.setItem('ATA-selected-flight-info', JSON.stringify(props.flight))
     Router.push({
       path:"/Flights/details",
       query:{

@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink class="relative" :to="dist.link" >
+  <NuxtLink id="top-dist-component" class="relative" :to="dist.link" >
   <img class="rounded-md h-60 object-cover w-full" :src="dist.image" alt="">
     <div class="overlay rounded-md"></div>
   <div class="content absolute bottom-0 absolute z-10 text-white px-5 py-5">

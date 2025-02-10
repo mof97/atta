@@ -13,13 +13,13 @@
         <slot/>
         <div class="form-footer">
           <ul class="flex items-center justify-center text-2xl pt-5 gap-3 text-white">
-            <li class="  flex items-center">
+            <li class=" w-12 h-12 border border-white rounded-full justify-center  flex items-center">
               <Icon name="tdesign:map-location"/>
             </li>
-            <li class="  flex items-center">
+            <li class=" w-12 h-12 border border-white rounded-full justify-center flex items-center">
               <Icon name="line-md:phone"/>
             </li>
-            <li class=" flex items-center">
+            <li class=" w-12 h-12 border border-white rounded-full justify-center flex items-center">
               <Icon name="ic:outline-email"/>
             </li>
           </ul>
@@ -33,7 +33,7 @@
           Your Dream <br> Destination Awaits
         </h2>
         <ul class="flex items-center gap-1 pt-3">
-          <li class="h-2 w-7/12 rounded-full bg-white"></li>
+          <li class="h-2 rounded-full bg-white animated-line"></li>
           <li class="h-2 w-2 rounded-full bg-white"></li>
           <li class="h-2 w-2 rounded-full bg-white"></li>
           <li class="h-2 w-2 rounded-full bg-white"></li>
@@ -42,7 +42,7 @@
           </li>
         </ul>
         <ul class="flex items-center text-2xl pt-5 gap-3 text-white">
-          <li class="  flex items-center">
+          <li class=" flex items-center">
             <Icon name="ri:instagram-fill"/>
           </li>
           <li class="  flex items-center">
@@ -79,10 +79,27 @@
   #auth-layout .n-input .n-input__input-el{
     @apply text-white
   }
-  #auth-layout .n-input .n-input__border {
+  #auth-layout .n-input .n-input__border,
+  #auth-layout .n-input .n-input__state-border{
     @apply border-2
   }
 
+  #auth-layout .animated-line {
+    transition: all 3000ms ease-in-out;
+    @apply w-1/12
+  }
+  #auth-layout .animated-line.active {
+    @apply w-7/12
+  }
+
+
 </style>
 <script setup lang="ts">
+
+  onMounted(()=>{
+    setTimeout(()=>{
+      document.querySelector('#auth-layout .animated-line').classList.add('active')
+    },500)
+  })
+
 </script>

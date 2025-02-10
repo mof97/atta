@@ -1,6 +1,10 @@
 <template>
   <div class="airport" id="from-container">
-    <n-form-item :class="label === 'From' ? 'rounded-l-lg' : ''" :show-feedback="false" :label="label">
+    <n-form-item :class="label === 'From' ? 'rounded-l-lg' : ''" :show-label="false" :show-feedback="false" :label="label">
+      <label for="" class="block flex items-center gap-1 text-gray-400 mb-1">
+        <icon class="text-xl" :name="label === 'From' ? 'tdesign:flight-takeoff':'tdesign:flight-landing'"/>
+        {{ label }}
+      </label>
       <n-select v-model:value="payload" remote filterable  :loading="is_loading" virtual-scroll  menu-size="large" :consistent-menu-width="false"  :render-label="renderOptionLabel" :on-search="getAirportData" :show-arrow="false" label-field="name" value-field="code" :options="AirPortOptions" />
     </n-form-item>
   </div>

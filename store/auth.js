@@ -2,7 +2,7 @@ import axios from "axios";
 export const useAuth = defineStore('auth', () => {
     async function login(payload){
         const response= await axios.post('/login',payload)
-        sessionStorage.setItem('MT-login-request-id',response.data.data.login_request_id)
+        sessionStorage.setItem('ATA-login-request-id',response.data.data.login_request_id)
         return response.data.data
     }
     async function resetPassword(payload){
@@ -16,8 +16,8 @@ export const useAuth = defineStore('auth', () => {
     }
     async function otp(payload){
         const response= await axios.post('/login',payload)
-        localStorage.setItem('MT-token',response.data.data.token)
-        localStorage.setItem('MT-user',JSON.stringify(response.data.data))
+        localStorage.setItem('ATA-token',response.data.data.token)
+        localStorage.setItem('ATA-user',JSON.stringify(response.data.data))
     }
     return {login ,resetPassword,sendNewPassword ,changePassword,otp}
 })

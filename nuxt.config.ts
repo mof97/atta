@@ -27,6 +27,11 @@ export default defineNuxtConfig({
     viewer: true,
     exposeConfig: false,
   },
+  runtimeConfig: {
+    public: {
+      apiBaseURL: process.env.API_BASE_URL || "http://api-uat.pro-traveling.com/api/b2b/v1",
+    }
+  },
   pinia: {
     autoImports: [
       "defineStore",

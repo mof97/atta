@@ -3,14 +3,14 @@
     <n-tooltip trigger="hover">
     <template #trigger>
       <img v-if="status === 'available'" class="w-10 -rotate-90"
-           src="@/assets/imgs/seat-map/availabel.webp" alt="">
+           src="@/assets/images/seat-map/availabel.webp" alt="">
       <img v-if="status === 'unavailable'" class="w-10 -rotate-90"
-           src="@/assets/imgs/seat-map/not-available.webp" alt="">
+           src="@/assets/images/seat-map/not-available.webp" alt="">
       <img v-if="status === 'reserved'"
            class="w-10 -rotate-90 clear-start opacity-30"
-           src="@/assets/imgs/seat-map/availabel.webp" alt="">
+           src="@/assets/images/seat-map/availabel.webp" alt="">
       <img v-if="status === 'selected'" class="w-10 -rotate-90"
-           src="@/assets/imgs/seat-map/selected.webp" alt="">
+           src="@/assets/images/seat-map/selected.webp" alt="">
     </template>
     <ul>
       <li>

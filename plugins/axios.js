@@ -10,7 +10,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         config.proxy = true
         config.timeout = 300000 // 5 minutes
         config.headers = {
-            "authorization": `Bearer ${localStorage.getItem('MT-token') !== null ? localStorage.getItem('MT-token') : ''}`,
+            "authorization": `Bearer ${localStorage.getItem('ATA-token') !== null ? localStorage.getItem('ATA-token') : ''}`,
         }
         return config;
     })
@@ -31,13 +31,10 @@ export default defineNuxtPlugin((nuxtApp) => {
                     errors += `${error.response.data.errors[item]} \n`
                 }
                 toast.error(errors)
-                // $mapping.errorData.title = errors
+            }else{
+                toast.error(error.response.data.message)
             }
-            // $mapping.errorData.body = error.response.data.description
 
-            if(requestList.value.includes(error.response.config.url) === false){
-                // $mapping.errorModalStatus = true
-            }
             return Promise.reject(error);
         })
     return {

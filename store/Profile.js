@@ -14,6 +14,11 @@ export const useProfile = defineStore('Profile', () => {
             params: params
         })
     }
+    async function getGroupsBook(params){
+        return await axios.get('/group/book-history',{
+            params: params
+        })
+    }
     async function getFlightBook(params){
         return await axios.get('/flight/get-book-history',{
             params: params
@@ -30,6 +35,7 @@ export const useProfile = defineStore('Profile', () => {
         getProfile,
         getVisaBook,
         getFlightBook,
+        getGroupsBook,
         getTransactions
 
     }

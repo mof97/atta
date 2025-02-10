@@ -15,10 +15,10 @@ export const FlightTypes = [
         label: "One Way",
         value: "0"
     },
-    // {
-    //     label: "Multi City",
-    //     value: "2"
-    // }
+    {
+        label: "Multi City",
+        value: "2"
+    }
 ]
 export const CabinTypes = [
     {
@@ -74,7 +74,7 @@ export const generateTraceId = (length = 16) => {
 
 export const mainSearchPayload = (payload)=>{
     let reashapeOpject = {}
-    let {roundTripDate , oneWayDate  , ...restPayload} = payload
+    let {date , ...restPayload} = payload
     if(payload.search_type === "1"){
         reashapeOpject = {
             ...restPayload,
@@ -82,12 +82,12 @@ export const mainSearchPayload = (payload)=>{
                 {
                     from: payload.from,
                     to: payload.to,
-                    date: payload.roundTripDate[0]
+                    date: payload.date[0]
                 },
                 {
                     from: payload.to,
                     to: payload.from,
-                    date: payload.roundTripDate[1]
+                    date: payload.date[1]
                 }
             ]
         }
@@ -98,7 +98,7 @@ export const mainSearchPayload = (payload)=>{
                 {
                     from: payload.from,
                     to: payload.to,
-                    date: payload.oneWayDate
+                    date: payload.date[0]
                 },
             ]
         }
@@ -115,7 +115,9 @@ export const mainSearchPayload = (payload)=>{
 }
 
 export const disablePreviousDate = (ts) => {
-    return ts < Date.now()
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    return ts < currentDate.getTime();
 }
 
 export const activeSelect = (id) => {

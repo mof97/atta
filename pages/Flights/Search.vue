@@ -1,5 +1,6 @@
 <template>
   <div id="search-page">
+    <Loader v-if="is_loading" />
     <header>
       <div class="container ">
         <div class="content rounded-xl items-center relative grid grid-cols-2 py-20 px-10">
@@ -10,7 +11,6 @@
             </span>
             <h2 class="text-5xl mb-14 text-white  font-bold">Where You Get Trapped in the Beauty of the World and Unforgettable
               Happiness!</h2>
-            <Button class="w-40" title="Explore" icon="solar:mouse-outline" size="medium"></Button>
           </div>
           <div>
             <FlightSearchMain />
@@ -18,7 +18,7 @@
         </div>
       </div>
     </header>
-    <section class="result-section py-10" >
+    <section id="result-section" class="py-10" v-if="Search?.result?.length">
       <div class="container grid grid-cols-12 gap-10">
         <div class="side-filter-container col-span-4">
           <FlightSearchFliters />
@@ -32,6 +32,13 @@
         </div>
       </div>
     </section>
+    <div class="container flex py-20 items-center justify-center" v-else>
+      <n-empty description="No Flight Found !">
+        <template #icon>
+          <Icon name="hugeicons:airplane-mode-off" />
+        </template>
+      </n-empty>
+    </div>
   </div>
 </template>
 <script setup>
@@ -42,20 +49,19 @@ const Route = useRoute()
 const Router = useRouter()
 const is_loading = ref(true)
 
-
-// Search.getMainResult({
-//   ...JSON.parse(Route.query.q),
-//   trace_id:generateTraceId(),
-// }).then(result => {
-//   is_loading.value = false
-//   if(Search.result.length > 0){
-//     window.scrollTo({
-//       top: document.querySelector('#search-resul').getBoundingClientRect().y,
-//       behavior: 'smooth',
-//     })
-//   }
-// }).catch(error => {
-//   is_loading.value = false
-// })
+Search.getMainResult({
+  ...JSON.parse(Route.query.q),
+  trace_id:generateTraceId(),
+}).then(result => {
+  is_loading.value = false
+  if(Search.result.length > 0){
+    window.scrollTo({
+      top: document.querySelector('#result-section').getBoundingClientRect().y,
+      behavior: 'smooth',
+    })
+  }
+}).catch(error => {
+  is_loading.value = false
+})
 
 </script>
